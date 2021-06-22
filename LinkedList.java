@@ -35,8 +35,8 @@ public class LinkedList
             for(int i=0; i<10; i++) {
     
                 Ball ball = new Ball();
-                ball.x = r.nextInt(32);
-                ball.y = r.nextInt(26);
+                ball.x = 5+r.nextInt(27);
+                ball.y = 5+r.nextInt(16);
     
                 balls.add(ball);
             }
@@ -103,6 +103,31 @@ public class LinkedList
         }
     }
 
+    public Node setNode(int ii, Node node, int iii) {
+        if(ii < iii + 0) {
+            ui.i++;
+            try {
+                node.node.obj = "" + (iii - ii) + ",15";
+            } catch(Exception e) {}
+            Node a = setNode(ii + 1, node.node, iii);
+        }
+        return node;
+    }
+
+    public void adNode(int ii, String g) {
+
+        Node nod = new Node();
+        nod.obj = g;
+        //Node nBefore = node;
+        if(ii == 0) {
+            nod.node = node;
+            //cursor = nod;
+            node = nod;
+            node.node = nod.node;
+            //cursor.node = nod.node;
+        }
+    }
+    
     public void addNode(int ii, String g) {
 
         Node nod = new Node();
@@ -164,28 +189,33 @@ public class LinkedList
 
     }
 
+    String ae = "-1";
+    String be = "-2";
+            
     public Node traverseLinkedList(Node n)
     {
-
+        
         if(n.node != null) {
+            Node ne = null;
             try
             {
-                StringTokenizer s = new StringTokenizer(node.node.obj.toString(), ",");
+                StringTokenizer s = new StringTokenizer(node.obj.toString(), ",");
+                int zz = sizeOfLinkedList(node, aa);
                 String z = s.nextToken();
                 String x = s.nextToken();
                 StringTokenizer st = new StringTokenizer(n.node.obj.toString(), ",");
                 String a = st.nextToken();
                 String b = st.nextToken();
-                if(z == a && x == b)
-                    System.exit(0);
+                System.out.print("z,x:" + z + "," + x);
+                System.out.print("ae,be:" + ae + "," + be);
                 if(Integer.parseInt(a) >= 33)
-                    System.exit(0);
+                    ui.quitn = true;
                 else if(Integer.parseInt(a) <= 0)
-                    System.exit(0);
+                    ui.quitn = true;
                 else if(Integer.parseInt(b) >= 27)
-                    System.exit(0);
+                    ui.quitn = true;
                 else if(Integer.parseInt(b) <= 0)
-                    System.exit(0);
+                    ui.quitn = true;
                 Random rrr = new Random();
                 int rr = rrr.nextInt(256);
                 int rg = rrr.nextInt(256);
@@ -199,7 +229,10 @@ public class LinkedList
 
             }
 
-            Node ne = traverseLinkedList(n.node);
+            ne = traverseLinkedList(n.node);
+                StringTokenizer st = new StringTokenizer(n.obj.toString(), ",");
+                ae = st.nextToken();
+                be = st.nextToken();
 
             return null;
         }
@@ -209,7 +242,7 @@ public class LinkedList
 
     public int sizeOfLinkedList(Node n, int size)
     {
-        if(n.node != null) {
+        if(n != null) {
             int sz = sizeOfLinkedList(n.node, size + 1);
 
             return sz;
